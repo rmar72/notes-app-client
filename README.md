@@ -42,3 +42,25 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## Important Ignored Files
+
+The config.js file contains sensitive information about the AWS resources we are using through aws-amplify, in our case:
+export default {
+  s3: {
+    REGION: "YOUR_S3_UPLOADS_BUCKET_REGION",
+    BUCKET: "YOUR_S3_UPLOADS_BUCKET_NAME"
+  },
+  apiGateway: {
+    REGION: "YOUR_API_GATEWAY_REGION",
+    URL: "YOUR_API_GATEWAY_URL"
+  },
+  cognito: {
+    REGION: "YOUR_COGNITO_REGION",
+    USER_POOL_ID: "YOUR_COGNITO_USER_POOL_ID",
+    APP_CLIENT_ID: "YOUR_COGNITO_APP_CLIENT_ID",
+    IDENTITY_POOL_ID: "YOUR_IDENTITY_POOL_ID"
+  }
+};
+
