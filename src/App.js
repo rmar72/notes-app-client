@@ -36,7 +36,9 @@ class App extends Component {
     this.setState({ isAuthenticated: authenticated });
   }
 
-  handleLogout = event => {
+  handleLogout = async event => {
+   await Auth.signOut(); // clears the localStorage
+
     this.userHasAuthenticated(false);
   }
 
@@ -48,7 +50,7 @@ class App extends Component {
     };
 
     return (
-      !this.state.isAuthenticating && // not sure what this line is for?!
+    !this.state.isAuthenticating && // ok so this line?
       <div className="App container">
         <Navbar fluid collapseOnSelect>
           <Navbar.Header>
