@@ -39,6 +39,8 @@ export default class Login extends Component {
 
             this.props.userHasAuthenticated(true); // its weird how AWSPinpointProvider is failing to get the credentials, but at least this try block is being executed
             // &  we merely go off by that, not the best auth IMO
+
+            this.props.history.push("/"); // upon logging in redirect to home
         } catch (e) {
             alert(e.message);
         }
