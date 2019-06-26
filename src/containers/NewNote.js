@@ -4,6 +4,9 @@ import LoaderButton from "../components/LoaderButton";
 import config from "../config";
 import "./NewNote.css";
 
+import { API } from "aws-amplify";
+
+
 export default class NewNote extends Component {
     constructor(props) {
       super(props);
@@ -39,6 +42,22 @@ export default class NewNote extends Component {
         }
     
         this.setState({ isLoading: true });
+
+        try {
+            await this.createNote({
+              content: this.state.content
+            });
+            this.props.history.push("/");
+        } catch (e) {
+            alert(e);
+            this.setState({ isLoading: false });
+        }
+    }
+
+    createNote(note) {
+        return API.post("notes", "/notes", {
+          body: note
+        });
     }
 
     render() {
