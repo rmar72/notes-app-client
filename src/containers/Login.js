@@ -37,6 +37,8 @@ export default class Login extends Component {
 
             await Auth.signIn(this.state.email, this.state.password);
 
+            this.props.userHasAuthenticated(true); // its weird how AWSPinpointProvider is failing to get the credentials, but at least this try block is being executed
+            // &  we merely go off by that, not the best auth IMO
         } catch (e) {
             alert(e.message);
         }
