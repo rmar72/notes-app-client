@@ -55,7 +55,7 @@ export default class NewNote extends Component {
     }
 
     createNote(note) {
-        return API.post("notes", "/notes", {
+        return API.post("notes", "/notes", { //1st arg is the notes name we gave our API in the index file's aws config, 2nd arg indicates to POST to /notes endpoint
           body: note
         });
     }
