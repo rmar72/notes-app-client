@@ -5,6 +5,7 @@ import config from "../config";
 import "./NewNote.css";
 
 import { API } from "aws-amplify";
+import { s3Upload } from "../libs/awsLib";
 
 
 export default class NewNote extends Component {
@@ -44,8 +45,12 @@ export default class NewNote extends Component {
         this.setState({ isLoading: true });
 
         try {
+            // we use the returned key and add that to the note object
+            const attachment = this.file ? await s3Upload(this.file) : null;
+
             await this.createNote({
-              content: this.state.content
+                attachment: attachment, // key to s3 object
+                content: this.state.content
             });
             this.props.history.push("/");
         } catch (e) {
