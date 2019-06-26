@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Routes from "./Routes";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import './App.css';
@@ -40,6 +40,8 @@ class App extends Component {
    await Auth.signOut(); // clears the localStorage
 
     this.userHasAuthenticated(false);
+
+    this.props.history.push("/login"); // redirect on logout
   }
 
   render() {
@@ -85,4 +87,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
