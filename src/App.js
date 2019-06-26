@@ -5,14 +5,31 @@ import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import './App.css';
 
+import { Auth } from "aws-amplify";
+
 class App extends Component {
 
   constructor(props){
     super(props);
     
     this.state = {
-      isAuthenticated: false
+      isAuthenticated: false,
+      isAuthenticating: true
     };
+  }
+
+  async componentDidMount(){
+    try{
+     await Auth.currentSession();
+      this.userHasAuthenticated(true);
+    } 
+    catch (e) {
+      if(e !== 'No current user'){
+        alert(e);
+      }
+    }
+
+    this.setState({isAuthenticating: false});
   }
 
   userHasAuthenticated = authenticated => {
@@ -31,6 +48,7 @@ class App extends Component {
     };
 
     return (
+      !this.state.isAuthenticating && // not sure what this line is for?!
       <div className="App container">
         <Navbar fluid collapseOnSelect>
           <Navbar.Header>
