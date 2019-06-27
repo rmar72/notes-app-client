@@ -40,8 +40,8 @@ export default class Home extends Component {
           (note, i) =>
             i !== 0
               ? <LinkContainer
-                  key={note.noteId}
-                  to={`/notes/${note.noteId}`}
+                  key={note.notesId}
+                  to={`/notes/${note.notesId}`}
                 >
                     {/* cu algo, note.content.trim().split("\n")[0] renders the first line of each note */}
                   <ListGroupItem header={note.content.trim().split("\n")[0]}>
